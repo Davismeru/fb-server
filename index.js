@@ -6,6 +6,8 @@ const app = express()
 app.use(cors())
 app.use(express.json());
 
+require('dotenv').config()
+
 // models/Email.js
 
 const newSchema = new mongoose.Schema({
@@ -42,10 +44,12 @@ app.post('/update', async(req, res) => {
     })
 })
 
+const port = 3000 || process.env.PORT
+
 mongoose
     .connect('mongodb+srv://davismeru911:Davis254@cluster0.swisynd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
     .then(() => {
-        app.listen(3000, () => {
+        app.listen(port, () => {
             console.log("server running");
         });
     })
